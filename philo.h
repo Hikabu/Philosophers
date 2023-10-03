@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:51:40 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/09/30 10:38:51 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/03 17:37:18 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,18 @@
 
 typedef struct s_philo
 {
-    int nbr;
-}		t_philo;
+	int				nbr;
+	int				die;
+	int				eat;
+	int				sleep;
+	int				optin;
+	pthread_t		*philosof;
+	pthread_mutex_t	mutex;
+} t_philo;
 
 void	for_time(); // for delete
 void	whatuint(); // delete
 void	problem(); // delete
 int		pars(char **av, t_philo *philo);
-void	*routine();
+void	*routine(void *sofer);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parcing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:11:53 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/30 11:19:01 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/03 17:36:41 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int filo_nbr(char *str, t_philo *philo)
 int pars(char **av, t_philo *philo)
 {
 	int	i;
-	pthread_t *philosof;
 
 	i = 0;
 	printf ("what is av: %s\n", av[1]);
@@ -38,16 +37,16 @@ int pars(char **av, t_philo *philo)
 	}
 	else
 	{
-		philosof = malloc(sizeof(pthread_t) * philo->nbr);
+		philo->philosof = malloc(sizeof(pthread_t) * philo->nbr);
 		while (i < philo->nbr)
 		{
 			i++;
-			if (pthread_create(philosof + i, NULL, routine, NULL) != 0)
+			if (pthread_create(philo->philosof + i, NULL, routine, &philo) != 0)
 			{
 				write(2, "Eror with creating thread\n", 26);
 				return (1);
 			}
-			if (pthread_join(philosof[i], NULL) != 0)
+			if (pthread_join(philo->philosof[i], NULL) != 0)
 				return (2);
 		}
 		return (0);
