@@ -3,22 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   parcing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:11:53 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/03 17:36:41 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/04 00:18:08 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int filo_nbr(char *str, t_philo *philo)
+void	erro()
 {
-    philo->nbr = 0;
-    philo->nbr = ft_atol(str);
-	printf("after atoi str= %d\n", philo->nbr);
-    return (philo->nbr);
+	printf("error with argument\n");
 }
+
 int pars(char **av, t_philo *philo)
 {
 	int	i;
@@ -46,6 +44,7 @@ int pars(char **av, t_philo *philo)
 				write(2, "Eror with creating thread\n", 26);
 				return (1);
 			}
+			pthread_mutex_init(&philo->fork, NULL);
 			if (pthread_join(philo->philosof[i], NULL) != 0)
 				return (2);
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:51:40 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/10/03 17:37:18 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/04 12:12:09 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,33 @@
 
 typedef struct s_philo
 {
-	int				nbr;
-	int				die;
-	int				eat;
-	int				sleep;
-	int				optin;
+	long			die;
+	long			eat;
+	long			sleep;
+	long			optin;
 	pthread_t		*philosof;
-	pthread_mutex_t	mutex;
+	pthread_mutex_t	*fork;
 } t_philo;
+
+typedef struct s_data
+{
+	pthread_mutex_t fork[200];
+	long			eat_tm;
+	long			sleep_tm;
+	long			die_tm;
+	long			nbr_philo;
+	long			eatphilo;
+	int				nbr;
+	int				id;
+	pthread_mutex_t	*forks;
+	t_philo			philo[200];
+} t_data;
 
 void	for_time(); // for delete
 void	whatuint(); // delete
 void	problem(); // delete
 int		pars(char **av, t_philo *philo);
 void	*routine(void *sofer);
+void	init_1(t_data *data, char **av);
+void	erro();
 #endif

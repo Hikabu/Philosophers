@@ -6,17 +6,17 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 10:56:05 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/30 10:58:10 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/04 00:15:16 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long long	ft_atol(const char *str)
+long	ft_atol(const char *str)
 {
-	long long	count;
-	long long	i;
-	long long	otr;
+	int		count;
+	int		i;
+	long	otr;
 
 	count = 0;
 	i = 0;
@@ -33,5 +33,7 @@ long long	ft_atol(const char *str)
 		i = i * 10 + str[count] - 48;
 		count++;
 	}
+	if (str[count] != '\0')
+		erro();
 	return (otr * i);
 }
