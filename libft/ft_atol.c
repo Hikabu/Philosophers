@@ -6,11 +6,16 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 10:56:05 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/04 00:15:16 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/04 21:06:24 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+void	erro()
+{
+	write(2, "error with argument\n", 20);
+}
 
 long	ft_atol(const char *str)
 {

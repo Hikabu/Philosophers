@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 11:28:07 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/09/27 21:14:39 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/04 21:19:05 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@
 
 // int gettimeofday(struct timeval tv, struct timezone *tz);
 
-void	for_time()
-{
-    struct timeval time;
+// void	for_time()
+// {
+//     struct timeval time;
     
-    if (gettimeofday(&time, NULL)) // no need in timezone
-        return ;
-    printf("%ld new year seconds\n", time.tv_sec);
-    printf("%d  new yerar microseconds\n", time.tv_usec);
-	printf("%ld years from 1970\n", time.tv_sec /60/60/24/365);
+//     if (gettimeofday(&time, NULL)) // no need in timezone
+//         return ;
+//     printf("%ld new year seconds\n", time.tv_sec);
+//     printf("%d  new yerar microseconds\n", time.tv_usec);
+// 	printf("%ld years from 1970\n", time.tv_sec /60/60/24/365);
     
-}
-uint64_t	get_time(int i)
+// }
+long long	get_time()
 {
 	struct			timeval	tm;
 	static struct	timeval	start;
@@ -44,19 +44,21 @@ uint64_t	get_time(int i)
 	if (gettimeofday(&tm, NULL))
 		return (0);
 	tm.tv_sec = tm.tv_sec - start.tv_sec;
-	return ((tm.tv_sec * (uint64_t)1000) + (tm.tv_usec / 1000));
+	return ((tm.tv_sec * 1000LL) + (tm.tv_usec / 1000LL));
 }
-void	whatuint()
+void	erro()
 {
-	uint64_t	start_time;
-	uint64_t	now;
-	int			i;
+	printf("error with argument\n");
+}
 
-	i = 0;
-	start_time = get_time(i);
-	usleep(10000);
-	now = get_time(i);
-	printf("%llu passed in usleep\n", now - start_time);
+int	mysleep(useconds_t time)
+{
+	long long	start;
+	
+	start = get_time();
+	while (get_time() - start > time)
+		usleep(time / 10);
+	return (0);
 }
 
 void	problem()
@@ -68,7 +70,7 @@ void	problem()
 	
 	zapros = 100 * 1000;
 	gettimeofday(&start_time, NULL);
-	usleep(zapros);
+	mysleep(zapros);
 	gettimeofday(&end_time, NULL);
 	actual = ((end_time.tv_sec - start_time.tv_sec) * 1000000) + (end_time.tv_usec - start_time.tv_usec);
 	printf("our request: %ld\n", zapros);

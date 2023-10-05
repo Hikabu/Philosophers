@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:51:40 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/10/04 12:12:09 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/04 21:05:32 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,14 @@ typedef struct s_data
 	t_philo			philo[200];
 } t_data;
 
-void	for_time(); // for delete
-void	whatuint(); // delete
-void	problem(); // delete
-int		pars(char **av, t_philo *philo);
-void	*routine(void *sofer);
-void	init_1(t_data *data, char **av);
+void		for_time(); // for delete
+void		whatuint(); // delete
+void		problem(); // delete
+int			pars(char **av, t_philo *philo);
+long long	get_time(int i);
+void		*routine(void *sofer);
+void		init_1(t_data *data, char **av);
+int			mysleep(useconds_t time);
 void	erro();
+void		erro();
 #endif
