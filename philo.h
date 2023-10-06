@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:51:40 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/10/04 21:05:32 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/05 16:40:18 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void		for_time(); // for delete
 void		whatuint(); // delete
 void		problem(); // delete
 int			pars(char **av, t_philo *philo);
-long long	get_time(int i);
+long long	get_time(void);
 void		*routine(void *sofer);
 void		init_1(t_data *data, char **av);
 int			mysleep(useconds_t time);
-void	erro();
+int			parc (t_data *data, char **av);
 void		erro();
 #endif

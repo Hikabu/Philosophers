@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 11:28:07 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/04 21:19:05 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/05 14:13:55 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,17 @@
 // }
 long long	get_time()
 {
-	struct			timeval	tm;
 	static struct	timeval	start;
+	static long long		time;
+	static int				i;
 
-	if (i == 0)
+	gettimeofday(&start, NULL);
+	if (!i)
 	{
-		gettimeofday(&start, NULL);
 		i = 1;
+		time = start.tv_sec * 1000LL + start.tv_usec / 1000LL;
 	}
-	if (gettimeofday(&tm, NULL))
-		return (0);
-	tm.tv_sec = tm.tv_sec - start.tv_sec;
-	return ((tm.tv_sec * 1000LL) + (tm.tv_usec / 1000LL));
+	return ((start.tv_sec * 1000LL) + (start.tv_usec / 1000LL) - time);
 }
 void	erro()
 {
@@ -56,8 +55,8 @@ int	mysleep(useconds_t time)
 	long long	start;
 	
 	start = get_time();
-	while (get_time() - start > time)
-		usleep(time / 10);
+	while (get_time() - start < time)
+		;
 	return (0);
 }
 
@@ -68,11 +67,11 @@ void	problem()
 	long			zapros;
 	long			actual;
 	
-	zapros = 100 * 1000;
+	zapros = 4;
 	gettimeofday(&start_time, NULL);
 	mysleep(zapros);
 	gettimeofday(&end_time, NULL);
-	actual = ((end_time.tv_sec - start_time.tv_sec) * 1000000) + (end_time.tv_usec - start_time.tv_usec);
+	actual = ((end_time.tv_sec - start_time.tv_sec) * 1000) + ((end_time.tv_usec - start_time.tv_usec) / 1000);
 	printf("our request: %ld\n", zapros);
 	printf("actial time: %ld\n", actual);
 }

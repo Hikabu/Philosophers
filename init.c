@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 23:25:11 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/04 18:06:36 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/05 16:46:34 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	init_1(t_data *data, char **av)
 	arg = 0;
 	while (av[++arg])	
 	{
+		if (!ft_isalnum(av[arg]))
+			write(2, "error\n", 6);
 		chislo = ft_atol(av[arg]);
 		if (arg == 1)
 			data->nbr_philo = chislo;
@@ -33,6 +35,19 @@ void	init_1(t_data *data, char **av)
 		if (arg == 5)
 			data->eatphilo = ft_atol(av[arg]);
 }
+
+// int	parc (t_data *data, char **av)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (av[i])
+// 	{
+// 		if (!ft_isalnum(av[i]))
+// 			write(2, "error\n", 6);
+// 		i++;
+// 	}
+// }
 // void	init_2(t_data *data)
 // {
 // 	int	i;

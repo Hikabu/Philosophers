@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 10:36:24 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/04 21:04:15 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/05 16:39:58 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,33 +31,17 @@
 // }
 int main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
-	// t_data	data;
+	// (void)ac;
+	// (void)av;
+	t_data	data;
 	
-	// if (ac == 5 || ac == 6)
-	// {
-	// 	init_1(&data, av);
-	// }
+	if (ac == 5 || ac == 6)
+	{
+		parc(&data, av);
+		init_1(&data, av);
+	}
+	else
+		return (1);
 	// pthread_mutex_init(&philos.fork, NULL);
-	// if (ac == 1 || ac == 2)
-	// {
-	// 	if (pars(av, &philos) == 1)
-	// 		write(2, "Error, jan\n", 11);
-	// }
-	// if (ac == 6)
-	// {
-		
-	// }
-	
-	// else
-	// 	write(2, "Too much, jan\n", 14);
-	// for_time();
-	// whatuint();
-	problem();
-	// pthread_create(&philo2, NULL, routine, NULL);
-	// pthread_join(philo2, NULL);
-	// pthread_mutex_destroy(&fork);
-	// printf("number of mails : %d\n", mails);
 	return (0);
 }
