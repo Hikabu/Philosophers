@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 10:36:24 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/05 16:39:58 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/06 14:29:07 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int main(int ac, char **av)
 	
 	if (ac == 5 || ac == 6)
 	{
-		parc(&data, av);
+		pars(&data, av);
 		init_1(&data, av);
 	}
 	else

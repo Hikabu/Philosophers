@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_strisnum.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 18:07:01 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/10/06 14:37:31 by vfedorov         ###   ########.fr       */
+/*   Created: 2023/10/06 14:37:58 by vfedorov          #+#    #+#             */
+/*   Updated: 2023/10/06 14:43:51 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(int c)
+int	ft_strisnum(char *str)
 {
-	if ((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122))
-		return (1);
-	else
-		return (0);
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if ((str[i] >= 48 && str[i] <= 57) || (str[i] >= 65 && str[i] <= 90)
+			|| (str[i] >= 97 && str[i] <= 122))
+			return (1);
+	}
+	return (0);
 }

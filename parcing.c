@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:11:53 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/05 16:47:23 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/06 18:32:17 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@ void	erro()
 	printf("error with argument\n");
 }
 
-int pars(char **av, t_philo *philo)
+int pars(t_data *data, char **av)
 {
 	int	i;
-	(void)philo;
+	(void)data;
 	i = 0;
 	printf ("what is av: %s\n", av[1]);
-	if (ft_isalpha(av[1][0]))
+	while (av[i])
 	{
-		write(2, "no alfas ", 9);
-		return (1);
+		if (ft_strisnum(av[i]) == 1)
+		{
+			write (2, "My program need only NUMBERS\n", 29);
+			return (1);
+		}
 	}
 	// else
 	// {

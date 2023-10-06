@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 10:56:05 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/04 21:06:24 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/06 14:36:32 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	erro()
+void	erro(void)
 {
 	write(2, "error with argument\n", 20);
 }
