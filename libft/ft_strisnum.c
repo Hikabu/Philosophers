@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strisnum.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 14:37:58 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/10/06 14:43:51 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/08 21:37:59 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	ft_strisnum(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if ((str[i] >= 48 && str[i] <= 57) || (str[i] >= 65 && str[i] <= 90)
-			|| (str[i] >= 97 && str[i] <= 122))
-			return (1);
+		if (!str[i] || !(str[i] >= 48 && str[i] <= 57))
+			return (0);
+		i++;
 	}
-	return (0);
+	return (1);
 }

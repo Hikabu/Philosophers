@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 23:25:11 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/05 16:46:34 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/08 19:05:55 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_1(t_data *data, char **av)
 	arg = 0;
 	while (av[++arg])	
 	{
-		if (!ft_isalnum(av[arg]))
+		if (!ft_strisnum(av[arg]))
 			write(2, "error\n", 6);
 		chislo = ft_atol(av[arg]);
 		if (arg == 1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:51:40 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/10/06 18:23:35 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/08 19:03:14 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_data
 	long			eatphilo;
 	int				nbr;
 	int				id;
+	char			*nado;
 	pthread_mutex_t	*forks;
 	t_philo			philo[200];
 } t_data;
@@ -56,7 +57,7 @@ typedef struct s_data
 void		for_time(); // for delete
 void		whatuint(); // delete
 void		problem(); // delete
-int			pars(t_philo *philo, char **av);
+int			pars(t_data *data, char **av);
 long long	get_time(void);
 void		*routine(void *sofer);
 void		init_1(t_data *data, char **av);

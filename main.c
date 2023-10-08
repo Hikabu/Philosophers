@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 10:36:24 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/06 14:29:07 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/08 20:14:18 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,16 @@ int main(int ac, char **av)
 	// (void)av;
 	t_data	data;
 	
+	data.nado = NULL;
 	if (ac == 5 || ac == 6)
 	{
-		pars(&data, av);
-		init_1(&data, av);
+		if (!pars(&data, av))
+		{
+			write(2, "Not good parcing\n", 17);
+			return (0);
+		}
+		else
+			init_1(&data, av);
 	}
 	else
 		return (1);

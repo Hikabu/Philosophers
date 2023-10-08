@@ -3,33 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   parcing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:11:53 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/06 18:32:17 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/08 21:44:43 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	erro()
-{
-	printf("error with argument\n");
-}
-
 int pars(t_data *data, char **av)
 {
 	int	i;
 	(void)data;
-	i = 0;
+	i = 1;
 	printf ("what is av: %s\n", av[1]);
 	while (av[i])
 	{
-		if (ft_strisnum(av[i]) == 1)
-		{
-			write (2, "My program need only NUMBERS\n", 29);
-			return (1);
-		}
+		if (ft_atol(av[1]) > 200)
+			return (0);
+		if (!ft_strisnum(av[i]))
+			return (0);
+		i++;
 	}
 	// else
 	// {
@@ -47,5 +42,5 @@ int pars(t_data *data, char **av)
 	// 	}
 	// 	return (0);
 	// }
-	return (0);
+	return (1);
 }

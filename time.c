@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 11:28:07 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/05 14:13:55 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/08 19:07:30 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ long long	get_time()
 	}
 	return ((start.tv_sec * 1000LL) + (start.tv_usec / 1000LL) - time);
 }
-void	erro()
-{
-	printf("error with argument\n");
-}
+// void	erro()
+// {
+// 	printf("error with argument\n");
+// }
 
 int	mysleep(useconds_t time)
 {
