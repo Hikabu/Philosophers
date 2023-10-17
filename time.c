@@ -3,34 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 11:28:07 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/08 19:07:30 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/17 22:54:12 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// struct timeval()
-// {
-// 	time_t		tv_sec;  seconds from lanuary 1, 1970
-// 	suseconds_t	tv_usec;  microseconds sec * 10000
-// }
-
-// int gettimeofday(struct timeval tv, struct timezone *tz);
-
-// void	for_time()
-// {
-//     struct timeval time;
-    
-//     if (gettimeofday(&time, NULL)) // no need in timezone
-//         return ;
-//     printf("%ld new year seconds\n", time.tv_sec);
-//     printf("%d  new yerar microseconds\n", time.tv_usec);
-// 	printf("%ld years from 1970\n", time.tv_sec /60/60/24/365);
-    
-// }
 long long	get_time()
 {
 	static struct	timeval	start;
@@ -45,10 +26,6 @@ long long	get_time()
 	}
 	return ((start.tv_sec * 1000LL) + (start.tv_usec / 1000LL) - time);
 }
-// void	erro()
-// {
-// 	printf("error with argument\n");
-// }
 
 int	mysleep(useconds_t time)
 {
@@ -59,19 +36,37 @@ int	mysleep(useconds_t time)
 		;
 	return (0);
 }
-
-void	problem()
+void	*routine(void *info)
 {
-	struct timeval	start_time;
-	struct timeval	end_time;
-	long			zapros;
-	long			actual;
-	
-	zapros = 4;
-	gettimeofday(&start_time, NULL);
-	mysleep(zapros);
-	gettimeofday(&end_time, NULL);
-	actual = ((end_time.tv_sec - start_time.tv_sec) * 1000) + ((end_time.tv_usec - start_time.tv_usec) / 1000);
-	printf("our request: %ld\n", zapros);
-	printf("actial time: %ld\n", actual);
+	t_data	*data;
+
+	data = info;
+	if (pthread_create(&data->philo->philosof, NULL, one_more, &data))
+		return ((void *)(1));
+	while (data->philo->data->dead == 0)
+	{
+		eat(data);
+		message(THINK, data);
+	}
+	if (pthread_join(data->philo->philosof, NULL))
+		return((void *)(1));
+	return (NULL);
+}
+
+void	*stalker(void *infa)
+{
+	t_data	*data;
+
+	data = infa;
+	pthread_mutex_lock(&data->philo->data->print);
+	printf("some action and data val is %d", data->philo->data->dead);
+	pthread_mutex_unlock(&data->philo->data->print);
+	while (data->philo->data->dead == 0)
+	{
+		pthread_mutex_lock(&data->lock);
+		if (data->philo->data->full >= data->philo->data->nbr_philo)
+			data->philo->data->dead = 1;
+		pthread_mutex_unlock(&data->lock);
+	}
+	return (NULL);
 }

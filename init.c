@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 23:25:11 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/16 21:38:14 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/17 22:06:30 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,48 +95,6 @@ void	*one_more(void *info)
 	return (NULL);
 }
 
-void	*routine(void *info)
-{
-	t_data	*data;
-
-	data = info;
-	// data->die_tm = data->philo->data->die_tm;
-	if (pthread_create(&data->philo->philosof, NULL, one_more, &data))
-		return ((void *)(1));
-	while (data->philo->data->dead == 0)
-	{
-		// eat(data);
-		message(THINK, data);
-	}
-	if (pthread_join(data->philo->philosof, NULL))
-		return((void *)(1));
-	return (NULL);
-	// printf("[%lld]ms ", get_time());
-	// printf("philo %d is thinking\n", data->philo->id);
-	// pthread_mutex_lock(&data->print);
-	// printf("philo %d is unlocking\n", data->philo->id);
-	// pthread_mutex_unlock(&data->print);
-	// return (NULL);
-} 
-
-void	*stalker(void *infa)
-{
-	t_data	*data;
-
-	data = infa;
-	pthread_mutex_lock(&data->philo->data->print);
-	printf("some action and data val is %d", data->philo->data->dead);
-	pthread_mutex_unlock(&data->philo->data->print);
-	while (data->philo->data->dead == 0)
-	{
-		pthread_mutex_lock(&data->lock);
-		if (data->philo->data->full >= data->philo->data->nbr_philo)
-			data->philo->data->dead = 1;
-		pthread_mutex_unlock(&data->lock);
-	}
-	return (NULL);
-}
-
 int	action(t_data *data)
 {
 	int			i;
@@ -163,34 +121,3 @@ int	action(t_data *data)
 	}
 	return (0);
 }
-
-
-// int	parc (t_data *data, char **av)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (av[i])
-// 	{
-// 		if (!ft_isalnum(av[i]))
-// 			write(2, "error\n", 6);
-// 		i++;
-// 	}
-// }
-// void	init_2(t_data *data)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (++i < data->nbr_philo)
-// 	{
-// 		if (pthread_create(data->philo + i, NULL, routine, &data) != 0)
-// 			{
-// 				write(2, "Eror with creating thread\n", 26);
-// 				return (1);
-// 			}
-// 			pthread_mutex_init(&data->forks, NULL);
-// 			if (pthread_join(data->philo[i], NULL) != 0)
-// 				return (2);
-// 	}
-// }

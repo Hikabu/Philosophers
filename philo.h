@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:51:40 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/10/16 21:32:57 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/17 22:54:25 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define EAT "is eating"
 # define SLEEP "is sleeping"
 # define THINK "is thinking"
+# define TAKE_FORK "has taken a fork"
 
 // struct timeval
 //{
@@ -90,4 +91,5 @@ int			action(t_data *data);
 void		*one_more(void *info);
 void		*routine(void *sofer);
 void		*stalker(void *infa);
+void		eat(t_data *data);
 #endif
