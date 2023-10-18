@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:11:53 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/17 22:54:09 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/18 16:00:28 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	take_forks(t_data *data)
 {
-	pthread_mutex_lock(data->philo->l_fork)
+	pthread_mutex_lock(data->philo->l_fork);
 	message(TAKE_FORK, data);
-	pthread_mutex_lock(data->philo->r_fork)
+	pthread_mutex_lock(data->philo->r_fork);
 	message(TAKE_FORK, data);
 }
 
@@ -25,20 +25,20 @@ void	drop_forks(t_data *data)
 	pthread_mutex_unlock(data->philo->l_fork);
 	pthread_mutex_unlock(data->philo->r_fork);
 	message(SLEEP, data);
-	my_sleep(data->philop>data->sleep_time);
+	mysleep(data->philo->data->sleep_tm);
 }
 
 void	eat(t_data *data)
 {
-	take_forks(t_data *data)
+	take_forks(data);
 	pthread_mutex_lock(&data->lock);
 	data->philo->eat_cnt = 1;
 	data->philo->dead = get_time() + data->philo->data->die_tm;
 	message(EAT, data);
 	data->philo->eat_cnt++;
-	my_sleep(data->philo->data->eat_tm);
+	mysleep(data->philo->data->eat_tm);
 	data->philo->eat_cnt = 0;
-	thread_mutex_lock(&data->lock);
+	pthread_mutex_lock(&data->lock);
 	drop_forks(data);
 }
 

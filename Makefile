@@ -1,6 +1,6 @@
 NAME			=	philo
 BON				=	philo_bonus
-SRCS 			=	main.c time.c parcing.c init.c
+SRCS 			=	main.c time.c parc_act.c init.c
 HEADERS 		=	philo.h
 OBJ 			=	$(SRCS:.c=.o)
 CFLAGS 			=	-Wall -Wextra -Werror -Imlx -g #-fsanitize=address
