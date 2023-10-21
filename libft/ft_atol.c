@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 10:56:05 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/06 14:36:32 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/20 09:57:21 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	erro(void)
 	write(2, "error with argument\n", 20);
 }
 
-long	ft_atol(const char *str)
+long long	ft_atol(const char *str)
 {
 	int		count;
 	int		i;
@@ -26,6 +26,8 @@ long	ft_atol(const char *str)
 	count = 0;
 	i = 0;
 	otr = 1;
+	if (!str)
+		return (0);
 	while (str[count] == '\n' || str[count] == '\t' || str[count] == '\f'
 		|| str[count] == '\r' || str[count] == '\v' || str[count] == ' ')
 		count++;

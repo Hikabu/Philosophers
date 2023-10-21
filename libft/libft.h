@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:15:19 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/10/06 14:40:46 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/20 15:50:34 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,9 @@ t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 void		ft_lstclear(t_list **lst, void (*del)(void*));
 void		ft_lstdelone(t_list *lst, void (*del)(void*));
-long		ft_atol(const char *str);
+long long	ft_atol(const char *str);
 int			ft_strisalpha(char *str);
 int			ft_strisnum(char *str);
+int			ft_strcmp(char *str1, char *str2);
 
 #endif

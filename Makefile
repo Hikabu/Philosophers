@@ -3,7 +3,7 @@ BON				=	philo_bonus
 SRCS 			=	main.c time.c parc_act.c init.c
 HEADERS 		=	philo.h
 OBJ 			=	$(SRCS:.c=.o)
-CFLAGS 			=	-Wall -Wextra -Werror -Imlx -g #-fsanitize=address
+CFLAGS 			=	-Wall -Wextra -Werror -Imlx -g #-fsanitize=thread
 IFLAGS			=	-Ilibft
 LFLAGS			=	-Llibft -lft
 RM				=	rm -rf
@@ -37,7 +37,6 @@ $(BON): $(BOBJ) libft/libft.a
 clean:
 	$(RM) $(OBJ) $(BOBJ) $(BON)
 	make -C libft fclean
-	make -C mlx clean
 	@echo "$(PURPLE) Executable file $(NAME) was deleted$(END)"
 
 fclean:	clean

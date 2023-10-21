@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:51:40 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/10/17 22:54:25 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/20 16:53:01 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 #include "./libft/libft.h"
 
 # define E_ARG "Wrong arguments"
+# define ERORR "ERORR"
+# define MALLOC "Error with malloc"
 # define E_PAR "Not good parcing"
 # define TH_CREATE "Error with thread creating"
 # define TH_JOIN "Error with thread joining"
@@ -43,11 +45,11 @@
 typedef struct s_philo
 {
 	struct s_data	*data;
-	long			dead;
+	long			eat_tm;
+	long			sleep_tm;
+	long			die_tm;
 	long			eat_cnt;
-	long			sleep;
-	long			status;
-	// pthread_t		thread_id;
+	long			eating;
 	int				id;
 	pthread_t		philosof; //dont need to use(only for pthread)
 	pthread_mutex_t	f_own_lock;
@@ -57,22 +59,20 @@ typedef struct s_philo
 
 typedef struct s_data
 {
-	pthread_mutex_t fork[200];
+	t_philo			philo[200];
 	long			eat_tm;
-	pthread_t		*thread_id;
 	long			sleep_tm;
 	long			die_tm;
 	long			nbr_philo;
 	long			nbr_meal;
 	long long		start_time;
-	int				nbr;
-	int				id;
-	int				dead;
 	int				full;
-	char			*nado;
+	int				dead;
+	pthread_t		*thread_id;
+	pthread_mutex_t fork[200];
 	pthread_mutex_t print;
+	// pthread_mutex_t is_dead;
 	pthread_mutex_t lock;
-	t_philo			philo[200];
 } t_data;
 
 // void		for_time(); // for delete
@@ -80,16 +80,18 @@ typedef struct s_data
 // void		problem(); // delete
 int			pars(t_data *data, char **av);
 long long	get_time(void);
-void		init_philo(t_data *data);
+int			init_philo(t_data *data);
 int			init_1(t_data *data, char **av);
-int			mysleep(useconds_t time);
+void		mysleep(useconds_t time);
 // int			parc (t_data *data, char **av);
 void		erro();
+int			error(char *str, t_data *data);
 void		create_forks(t_data *data);
-int			message(char *str, t_data *data);
+void		drop_forks(t_philo *philo);
+int			message(char *str, t_philo *philo);
 int			action(t_data *data);
 void		*one_more(void *info);
 void		*routine(void *sofer);
 void		*stalker(void *infa);
-void		eat(t_data *data);
+void		eat(t_philo *philo);
 #endif
