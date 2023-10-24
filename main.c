@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 10:36:24 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/20 16:32:18 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/22 19:19:13 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,29 @@ int	error(char *str, t_data *data)
 		ft_destroy(data);
 	return (1);
 }
-int	message(char *str, t_philo *philo)
+void	message(char *str, t_philo *philo)
 {
 	long long	time;
 
 	pthread_mutex_lock(&philo->data->print);
-	time = get_time();
-	if (ft_strcmp(DEAD, str) == 0 && philo->data->die_tm == 0)
-		printf("%llu %d %s\n", time, philo->id, str);
+	time = get_time() - philo->data->start_time;
+	if (ft_strcmp(DEAD, str) == 0 && philo->data->dead == 0)
+	{
+		printf("%llu philo[%d] %s\n", time, philo->id, str);
+		philo->data->dead = 1;
+	}
+	if (!philo->data->dead)
+		printf("%llu philo[%d] %s\n", time, philo->id, str);
 	pthread_mutex_unlock(&philo->data->print);
-	return (0);
 }
 int main(int ac, char **av)
 {
 	t_data	data;
 	
-	// data.nado = NULL;
 	if (ac == 5 || ac == 6)
 	{
 		if (!pars(&data, av))
-			return (message(E_PAR, NULL));
+			return (error("wrong arguments", NULL));
 		get_time();
 		if (init_1(&data, av))
 			return (1);

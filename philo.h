@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:51:40 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/10/20 16:53:01 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/24 00:04:02 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_philo
 	long			sleep_tm;
 	long			die_tm;
 	long			eat_cnt;
-	long			eating;
+	int				eating;
 	int				id;
 	pthread_t		philosof; //dont need to use(only for pthread)
 	pthread_mutex_t	f_own_lock;
@@ -60,14 +60,14 @@ typedef struct s_philo
 typedef struct s_data
 {
 	t_philo			philo[200];
+	int				nbr_philo;
+	int				full;
+	int				dead;
+	int				nbr_meal;
 	long			eat_tm;
 	long			sleep_tm;
 	long			die_tm;
-	long			nbr_philo;
-	long			nbr_meal;
 	long long		start_time;
-	int				full;
-	int				dead;
 	pthread_t		*thread_id;
 	pthread_mutex_t fork[200];
 	pthread_mutex_t print;
@@ -88,10 +88,11 @@ void		erro();
 int			error(char *str, t_data *data);
 void		create_forks(t_data *data);
 void		drop_forks(t_philo *philo);
-int			message(char *str, t_philo *philo);
+void		message(char *str, t_philo *philo);
 int			action(t_data *data);
 void		*one_more(void *info);
 void		*routine(void *sofer);
 void		*stalker(void *infa);
 void		eat(t_philo *philo);
+void		ft_destroy(t_data *data);
 #endif

@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:11:53 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/20 16:53:14 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/24 00:12:35 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	take_forks(t_philo *philo)
 {
+	
 	pthread_mutex_lock(philo->l_fork);
 	message(TAKE_FORK, philo);
 	pthread_mutex_lock(philo->r_fork);
@@ -30,6 +31,7 @@ void	drop_forks(t_philo *philo)
 
 void	eat(t_philo *philo)
 {
+	
 	take_forks(philo);
 	pthread_mutex_lock(&philo->f_own_lock);
 	philo->eating = 1;
