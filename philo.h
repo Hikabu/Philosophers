@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:51:40 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/10/24 00:04:02 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/30 22:42:35 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

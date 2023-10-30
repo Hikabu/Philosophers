@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 23:25:11 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/30 13:16:05 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/30 23:03:16 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,6 @@ int	init_philo(t_data *data)
 		data->thread_id = malloc(sizeof(pthread_t) * data->nbr_philo);
 		if (!data->thread_id)
 			return (error(MALLOC, data));
-		// data->thread_id = malloc(sizeof(pthread_t) * data->nbr_philo);
-		// if (!data->thread_id)
-		// 	return (message(MALLOC, data));
 		pthread_mutex_init(&data->philo[i].f_own_lock, NULL);
 	}
 	return (0);
@@ -93,7 +90,10 @@ void	*one_more(void *info)
 	{
 		pthread_mutex_lock(&philo->f_own_lock);
 		if (get_time() >= philo->die_tm && philo->eating == 0)
+		{
 			message(DEAD, philo);
+			return ((void *)(1));
+		}
 		if (philo->eat_cnt == philo->data->nbr_meal)
 		{
 			pthread_mutex_lock(&philo->data->lock);
@@ -124,7 +124,7 @@ int	action(t_data *data)
 		if (pthread_create(&data->thread_id[i], NULL, &routine, &data->philo[i]))
 			return (error(TH_CREATE, data));
 		nbr++;
-		mysleep(1);
+		// mysleep(1);
 	}
 	if (data->nbr_philo == 1)
 		return (0);

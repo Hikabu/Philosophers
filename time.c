@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 11:28:07 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/30 13:13:19 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/10/30 23:06:17 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ long long	get_time (void)
 
 	if (gettimeofday(&start, NULL))
 		return (error("FAIL\n", NULL));
-	// printf("sec: %ld\n", start.tv_sec);
-	// printf("usec: %d\n", start.tv_usec);
 	if (count == 0)
 	{
 		fix_first_sec = (start.tv_sec * 1000 + start.tv_usec / 1000);
@@ -36,13 +34,15 @@ void	mysleep(useconds_t time)
 
 	start = get_time();
 	while (get_time() - start < time)
-		usleep(50);
+		usleep(time / 10);
 }
 void	*routine(void *info)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)info;
+	if (philo->id % 2 != 0)
+		usleep(2500);
 	if (pthread_create(&philo->philosof, NULL, one_more, (void *)philo))
 		return ((void *)(1));
 	while (philo->data->dead == 0)
@@ -56,7 +56,7 @@ void	*routine(void *info)
 	{
 		pthread_join(philo->data->thread_id[0], NULL);
 		while (philo->data->dead == 0)
-			mysleep(0);
+			mysleep(1);
 		ft_destroy(philo->data);
 		return (0);
 	}
@@ -69,16 +69,13 @@ void	*stalker(void *infa)
 
 	philo = (t_philo *)infa;
 	pthread_mutex_lock(&philo->data->print);
-	printf("data val: %d", philo->data->dead);
+	// printf("data val: %d", philo->data->dead);
 	pthread_mutex_unlock(&philo->data->print);
 	while (philo->data->dead == 0)
 	{
 		pthread_mutex_lock(&philo->f_own_lock);
 		if (philo->data->full >= philo->data->nbr_philo)
-		{
-			printf("address is: %lx", philo->data->die_tm);
 			philo->data->die_tm = 1;
-		}
 		pthread_mutex_unlock(&philo->f_own_lock);
 	}
 	return (NULL);

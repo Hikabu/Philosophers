@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parc_act.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:11:53 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/26 13:12:04 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/30 22:42:56 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,14 @@ void	drop_forks(t_philo *philo)
 
 void	eat(t_philo *philo)
 {
-	
+	printf("address is: %ld\n", philo->data->die_tm);
 	take_forks(philo);
-	pthread_mutex_lock(&philo->f_own_lock);
 	philo->eating = 1;
 	philo->die_tm = get_time() + philo->data->die_tm;
 	message(EAT, philo);
 	philo->eat_cnt++;
 	mysleep(philo->data->eat_tm);
 	philo->eating = 0;
-	pthread_mutex_unlock(&philo->f_own_lock);
 	drop_forks(philo);
 }
 
