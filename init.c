@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
+/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 23:25:11 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/29 13:17:00 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/30 13:16:05 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,8 @@ void	*one_more(void *info)
 	while (philo->data->dead == 0)
 	{
 		pthread_mutex_lock(&philo->f_own_lock);
-		// printf ("+++++ what is time %ld\n", philo->die_tm);
-		// printf ("+++%d\n", philo->eating);
-		// printf ("+++%lld\n", get_time());
 		if (get_time() >= philo->die_tm && philo->eating == 0)
-		{
 			message(DEAD, philo);
-		}
 		if (philo->eat_cnt == philo->data->nbr_meal)
 		{
 			pthread_mutex_lock(&philo->data->lock);
@@ -114,6 +109,7 @@ void	*one_more(void *info)
 int	action(t_data *data)
 {
 	int			i;
+	int			nbr = 0;
 	pthread_t	arg_six;
 
 	data->start_time = get_time();
@@ -127,6 +123,7 @@ int	action(t_data *data)
 	{
 		if (pthread_create(&data->thread_id[i], NULL, &routine, &data->philo[i]))
 			return (error(TH_CREATE, data));
+		nbr++;
 		mysleep(1);
 	}
 	if (data->nbr_philo == 1)
