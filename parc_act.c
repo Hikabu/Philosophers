@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:11:53 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/24 00:12:35 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/26 13:12:04 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int pars(t_data *data, char **av)
 	int	i;
 	(void)data;
 	i = 1;
-	printf ("what is av: %s\n", av[1]);
 	while (av[i])
 	{
 		if (ft_atol(av[1]) > 200)

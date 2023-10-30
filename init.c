@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 23:25:11 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/24 00:09:27 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/29 13:17:00 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	init_philo(t_data *data)
 		data->thread_id = malloc(sizeof(pthread_t) * data->nbr_philo);
 		if (!data->thread_id)
 			return (error(MALLOC, data));
-		data->thread_id = malloc(sizeof(pthread_t) * data->nbr_philo);
+		// data->thread_id = malloc(sizeof(pthread_t) * data->nbr_philo);
 		// if (!data->thread_id)
 		// 	return (message(MALLOC, data));
 		pthread_mutex_init(&data->philo[i].f_own_lock, NULL);
@@ -92,9 +92,9 @@ void	*one_more(void *info)
 	while (philo->data->dead == 0)
 	{
 		pthread_mutex_lock(&philo->f_own_lock);
-		printf ("+++++ what is time %ld\n", philo->die_tm);
-		printf ("+++%d\n", philo->eating);
-		printf ("+++%lld\n", get_time());
+		// printf ("+++++ what is time %ld\n", philo->die_tm);
+		// printf ("+++%d\n", philo->eating);
+		// printf ("+++%lld\n", get_time());
 		if (get_time() >= philo->die_tm && philo->eating == 0)
 		{
 			message(DEAD, philo);
@@ -106,8 +106,8 @@ void	*one_more(void *info)
 			philo->eat_cnt++;
 			pthread_mutex_unlock(&philo->data->lock);
 		}
+		pthread_mutex_unlock(&philo->f_own_lock);
 	}
-	pthread_mutex_unlock(&philo->f_own_lock);
 	return (NULL);
 }
 

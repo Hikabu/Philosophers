@@ -6,7 +6,7 @@
 /*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 11:28:07 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/22 18:33:38 by valeriafedo      ###   ########.fr       */
+/*   Updated: 2023/10/29 13:30:35 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ long long	get_time (void)
 
 	if (gettimeofday(&start, NULL))
 		return (error("FAIL\n", NULL));
-	return ((start.tv_sec * 1000LL )+ (start.tv_usec / 1000LL));
+	printf("sec: %ld\n", start.tv_sec);
+	printf("usec: %d\n", start.tv_usec);
+	return ((start.tv_sec * 1000LL ) + (start.tv_usec / 1000LL));
 }
 
 void	mysleep(useconds_t time)
@@ -61,7 +63,7 @@ void	*stalker(void *infa)
 
 	philo = (t_philo *)infa;
 	pthread_mutex_lock(&philo->data->print);
-	printf(" and data val is %d", philo->data->dead);
+	printf("data val: %d", philo->data->dead);
 	pthread_mutex_unlock(&philo->data->print);
 	while (philo->data->dead == 0)
 	{
