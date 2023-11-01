@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 11:51:40 by vfedorov          #+#    #+#             */
-/*   Updated: 2023/10/30 22:42:35 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/11/01 14:43:29 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,17 @@
 
 typedef struct s_philo
 {
-	struct s_data	*data;
-	long			eat_tm;
-	long			sleep_tm;
-	long			die_tm;
-	long			eat_cnt;
-	int				eating;
-	int				id;
-	pthread_t		philosof; //dont need to use(only for pthread)
-	pthread_mutex_t	f_own_lock;
-	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	*l_fork;
+	struct s_data		*data;
+	long long			eat_tm;
+	long long			sleep_tm;
+	long long			die_tm;
+	long long			eat_cnt;
+	int					eating;
+	int					id;
+	pthread_t			philosof; //dont need to use(only for pthread)
+	pthread_mutex_t		f_own_lock;
+	pthread_mutex_t		*r_fork;
+	pthread_mutex_t		*l_fork;
 } t_philo;
 
 typedef struct s_data
@@ -64,31 +64,26 @@ typedef struct s_data
 	int				full;
 	int				dead;
 	int				nbr_meal;
-	long			eat_tm;
-	long			sleep_tm;
-	long			die_tm;
+	long long		eat_tm;
+	long long		sleep_tm;
+	long long		die_tm;
 	long long		start_time;
 	pthread_t		*thread_id;
 	pthread_mutex_t fork[200];
 	pthread_mutex_t print;
-	// pthread_mutex_t is_dead;
 	pthread_mutex_t lock;
 } t_data;
 
-// void		for_time(); // for delete
-// void		whatuint(); // delete
-// void		problem(); // delete
 int			pars(t_data *data, char **av);
 long long	get_time(void);
 int			init_philo(t_data *data);
 int			init_1(t_data *data, char **av);
 void		mysleep(useconds_t time);
-// int			parc (t_data *data, char **av);
 void		erro();
 int			error(char *str, t_data *data);
 void		create_forks(t_data *data);
 void		drop_forks(t_philo *philo);
-void		message(char *str, t_philo *philo);
+int			message(char *str, t_philo *philo);
 int			action(t_data *data);
 void		*one_more(void *info);
 void		*routine(void *sofer);

@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 11:28:07 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/30 23:06:17 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/11/01 17:00:41 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,14 @@ void	*routine(void *info)
 	philo = (t_philo *)info;
 	if (philo->id % 2 != 0)
 		usleep(2500);
+	philo->die_tm = philo->data->die_tm + get_time();
 	if (pthread_create(&philo->philosof, NULL, one_more, (void *)philo))
 		return ((void *)(1));
 	while (philo->data->dead == 0)
 	{	
 		eat(philo);
 		message(THINK, philo);
+		printf ("wtf\n");
 	}
 	if (pthread_join(philo->philosof, NULL))
 		return((void *)(1));

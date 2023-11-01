@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 23:25:11 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/10/30 23:03:16 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:20:00 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ int	init_philo(t_data *data)
 	while (++i < data->nbr_philo)
 	{
 		data->philo[i].data = data;
+		// printf("in init time is %lld\n", data->philo[i].die_tm);
 		data->philo[i].die_tm = data->die_tm;
+		// printf("in init die %lld\n", data->die_tm);
 		data->philo[i].eat_tm = data->eat_tm;
 		data->philo[i].sleep_tm = data->sleep_tm;
 		data->philo[i].eating = 0;
@@ -89,11 +91,11 @@ void	*one_more(void *info)
 	while (philo->data->dead == 0)
 	{
 		pthread_mutex_lock(&philo->f_own_lock);
-		if (get_time() >= philo->die_tm && philo->eating == 0)
-		{
+		printf("time to die %lld\n", philo->data->die_tm);
+		if (get_time() >= philo->die_tm && philo->eating == 0) // data
+			// printf("in dead message\n");
 			message(DEAD, philo);
-			return ((void *)(1));
-		}
+			// printf("in dead message after message\n");
 		if (philo->eat_cnt == philo->data->nbr_meal)
 		{
 			pthread_mutex_lock(&philo->data->lock);
@@ -109,7 +111,6 @@ void	*one_more(void *info)
 int	action(t_data *data)
 {
 	int			i;
-	int			nbr = 0;
 	pthread_t	arg_six;
 
 	data->start_time = get_time();
@@ -123,8 +124,6 @@ int	action(t_data *data)
 	{
 		if (pthread_create(&data->thread_id[i], NULL, &routine, &data->philo[i]))
 			return (error(TH_CREATE, data));
-		nbr++;
-		// mysleep(1);
 	}
 	if (data->nbr_philo == 1)
 		return (0);
