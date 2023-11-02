@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:11:53 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/11/01 15:47:05 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:44:02 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ void	eat(t_philo *philo)
 	take_forks(philo);
 	pthread_mutex_lock(&philo->f_own_lock);
 	philo->eating = 1;
+	// printf("die time is under  %lld\n", philo->die_tm);
 	philo->die_tm = get_time() + philo->data->die_tm;
-	// printf("die time is %lld\n", philo->die_tm);
+	// printf("die time is after %lld\n", philo->die_tm);
 	// printf("die time is ---%lld\n",philo->data->die_tm);
 	message(EAT, philo);
 	philo->eat_cnt++;

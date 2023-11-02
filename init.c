@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 23:25:11 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/11/01 19:20:00 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/11/02 17:39:05 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	*one_more(void *info)
 	while (philo->data->dead == 0)
 	{
 		pthread_mutex_lock(&philo->f_own_lock);
-		printf("time to die %lld\n", philo->data->die_tm);
+		// printf("time to die %lld\n", philo->die_tm);
 		if (get_time() >= philo->die_tm && philo->eating == 0) // data
 			// printf("in dead message\n");
 			message(DEAD, philo);

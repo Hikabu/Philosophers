@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 11:28:07 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/11/01 17:00:41 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/11/02 15:44:26 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,15 @@ void	mysleep(useconds_t time)
 void	*routine(void *info)
 {
 	t_philo	*philo;
-
+	
+	// long long	get;
 	philo = (t_philo *)info;
 	if (philo->id % 2 != 0)
 		usleep(2500);
+	// printf("in routinr time %lld\n", get = get_ time());
 	philo->die_tm = philo->data->die_tm + get_time();
+	// printf("in routinr after getting time %lld\n", philo->die_tm);
+	// exit(1);
 	if (pthread_create(&philo->philosof, NULL, one_more, (void *)philo))
 		return ((void *)(1));
 	while (philo->data->dead == 0)
