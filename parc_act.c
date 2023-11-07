@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parc_act.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 18:11:53 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/11/02 15:44:02 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:16:29 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

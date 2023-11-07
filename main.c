@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 10:36:24 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/11/02 15:43:57 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:15:18 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,17 @@ int	error(char *str, t_data *data)
 int	message(char *str, t_philo *philo)
 {
 	long long	time;
-	if (philo->data->dead == 0)
+
+	pthread_mutex_lock(&philo->data->print);
+	time = get_time() - philo->data->start_time;
+	if (ft_strcmp(DEAD, str) == 0 && philo->data->dead == 0)
 	{
-		pthread_mutex_lock(&philo->data->print);
-		time = get_time() - philo->data->start_time;
-		if (ft_strcmp(DEAD, str) == 0 && philo->data->dead == 0)
-		{
-			printf("%llu philo[%d] %s\n", time, philo->id, str);
-			philo->data->dead = 1;
-			return (1);
-		}
-		if (!philo->data->dead)
-			printf("%llu philo[%d] %s\n", time, philo->id, str);
-		pthread_mutex_unlock(&philo->data->print);
+		printf("%llu philo[%d] %s\n", time, philo->id, str);
+		philo->data->dead = 1;
 	}
-	return (0);
+	if (!philo->data->dead)
+		printf("%llu philo[%d] %s\n", time, philo->id, str);
+	pthread_mutex_unlock(&philo->data->print);
 }
 int main(int ac, char **av)
 {

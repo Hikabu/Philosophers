@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: valeriafedorova <valeriafedorova@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 23:25:11 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/11/02 17:39:05 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/11/07 13:15:58 by valeriafedo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void	*one_more(void *info)
 int	action(t_data *data)
 {
 	int			i;
+	int			nbr = 0;
 	pthread_t	arg_six;
 
 	data->start_time = get_time();
@@ -124,6 +125,8 @@ int	action(t_data *data)
 	{
 		if (pthread_create(&data->thread_id[i], NULL, &routine, &data->philo[i]))
 			return (error(TH_CREATE, data));
+		nbr++;
+		// mysleep(1);
 	}
 	if (data->nbr_philo == 1)
 		return (0);
