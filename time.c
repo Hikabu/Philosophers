@@ -6,7 +6,7 @@
 /*   By: vfedorov <vfedorov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 11:28:07 by valeriafedo       #+#    #+#             */
-/*   Updated: 2023/11/02 15:44:26 by vfedorov         ###   ########.fr       */
+/*   Updated: 2023/11/06 12:23:39 by vfedorov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	*routine(void *info)
 	{	
 		eat(philo);
 		message(THINK, philo);
-		printf ("wtf\n");
+		// printf ("wtf\n");
 	}
 	if (pthread_join(philo->philosof, NULL))
 		return((void *)(1));
